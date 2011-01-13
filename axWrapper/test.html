@@ -1,0 +1,103 @@
+<!-- saved from url=(0013)about:internet -->
+<!-- The above comment makes IE treat this as a web page -->
+<html>
+<head>
+
+    <title>test page for object axWrapper</title>
+
+    <script type="text/javascript">
+
+    function addEvent(obj, name, func)
+    {
+        if(obj.attachEvent)
+        { obj.attachEvent('on'+name, func); }
+        else if(obj.addEventListener)
+        { obj.addEventListener(name, func, false); }
+        else { alert("failed to attach event"); }
+    }
+
+    function handleClick()
+    {
+        // When the top button is clicked, this function swaps the
+        // button caption property between the top & bottom buttons.
+        // Then it calls the FireClick event on the bottom button,
+        // which visually shows the bottom button being pressed and
+        // then released.
+        
+        var xpcmd1, xpcmd2, tmp;
+        xpcmd1 = document.getElementById("xpcmd1");
+        xpcmd2 = document.getElementById("xpcmd2");
+        tmp = xpcmd1.caption;
+        xpcmd1.caption = xpcmd2.caption;
+        xpcmd2.caption = tmp;
+        xpcmd2.fireclick(500); // depress the bottom button for 500ms
+    }
+
+    function handleKeyPress(k)
+    {
+        // When the top button has focus, press a key to fire the
+        // KeyPress event. The ASCII value of the key pressed is
+        // shown in the text field above the buttons.
+
+        var keycode;
+        keycode = document.getElementById("keycode");
+        keycode.value = k;
+    }
+
+    function attachEvents(obj)
+    {
+        // Attach event handlers for Click & KeyPress events.
+
+        addEvent(obj, 'click', handleClick);
+        addEvent(obj, 'keypress', handleKeyPress);
+    }
+
+    </script>
+</head>
+<body>
+
+<h3>Firebreath ActiveX Wrapper Example - Test page</h3>
+
+<!-- The top button is a Firebreath plugin object that wraps
+     an ActiveX UserControl which simulates a command button.
+     The 'onload' param is assigned to the 'attachEvents'
+     function to connect the Click & KeyPress plugin events
+     to Javascript event handlers. The 'caption' and 'theme'
+     params are used to initialize the corresponding ActiveX
+     control properties.
+-->
+
+<p>
+<object id="xpcmd1" type="application/x-fbaxwrapperexample" 
+style="width:200px; height:50px;" tabindex="1">
+<param name="onload" value="attachEvents" />
+<param name="caption" value="Button 1" />
+<param name="theme" value="0" />
+</object> 
+</p>
+
+<!-- The bottom button is a Firebreath plugin object that wraps
+     an ActiveX UserControl which simulates a command button.
+     This object is not attached to any event handlers. The
+     'caption' and 'theme' params are used to initialize the
+     corresponding ActiveX control properties.
+-->
+
+<p>
+<object id="xpcmd2" type="application/x-fbaxwrapperexample" 
+style="width:200px; height:50px;" tabindex="2">
+<param name="caption" value="Button 2" />
+<param name="theme" value="1" />
+</object> 
+</p>
+
+<!-- A text box to display key codes entered while the top
+     button has focus.
+-->
+
+<p>
+Key number: <input type="text" id="keycode" width="40" tabindex="3" />
+</p>
+
+</body>
+</html>

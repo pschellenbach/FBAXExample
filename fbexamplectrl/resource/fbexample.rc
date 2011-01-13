@@ -1,0 +1,28 @@
+/****************************************************************************
+
+fbexample.RC
+
+
+*****************************************************************************/
+
+
+// bitmap resources
+
+100 BITMAP "Blue_Button_0.bmp"
+101 BITMAP "Blue_Button_1.bmp"
+102 BITMAP "Blue_Button_2.bmp"
+103 BITMAP "Blue_Button_3.bmp"
+104 BITMAP "Blue_Button_4.bmp"
+
+200 BITMAP "Homestead_Button_0.bmp"
+201 BITMAP "Homestead_Button_1.bmp"
+202 BITMAP "Homestead_Button_2.bmp"
+203 BITMAP "Homestead_Button_3.bmp"
+204 BITMAP "Homestead_Button_4.bmp"
+
+300 BITMAP "Metalic_Button_0.bmp"
+301 BITMAP "Metalic_Button_1.bmp"
+302 BITMAP "Metalic_Button_2.bmp"
+303 BITMAP "Metalic_Button_3.bmp"
+304 BITMAP "Metalic_Button_4.bmp"
+

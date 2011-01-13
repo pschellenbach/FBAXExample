@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="{1cb826b2-24d7-54bb-87a5-7f30c8b7256d}" Name="${PLUGIN_NAME}" Language="1033" Version="${FBSTRING_PLUGIN_VERSION}" Manufacturer="${FBSTRING_CompanyName}" UpgradeCode="04f610c7-5209-5abe-8c23-bc822b5f8583">
+        <Package InstallerVersion="200" Compressed="yes" Description="Installer for the ${PLUGIN_NAME} plugin" InstallScope="perUser" />
+        <Media Id="1" Cabinet="${PLUGIN_NAME}.cab" EmbedCab="yes" />
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="AppDataFolder">
+                <Directory Id="CompanyDir" Name="${COMPANY_NAME}">
+                    <Component Id="CompanyDirComp" Guid="{35fb0bce-eb38-5c4f-b53a-ecd9d5023b97}">
+                        <RemoveFolder Id="RemoveCompanyDir" On="uninstall" />
+                        <RegistryValue Root="HKCU" Key="SOFTWARE\${COMPANY_NAME}" Name="Uninstall" Type="string" Value="${FBSTRING_PLUGIN_VERSION}" KeyPath="yes" />
+                    </Component>
+                    <Directory Id="INSTALLDIR" Name="${PLUGIN_NAME}">
+                        <Component Id="InstallDirComp" Guid="{91859e88-b2eb-552c-81fc-50cb56f14541}">
+                            <RemoveFolder Id="RemoveInstallDir" On="uninstall" />
+                            <RegistryValue Root="HKCU" Key="SOFTWARE\${COMPANY_NAME}\${PLUGIN_NAME}" Name="Uninstall" Type="string" Value="${FBSTRING_PLUGIN_VERSION}" KeyPath="yes" />
+                        </Component>
+
+                        <!-- Put Additional files here: -->
+                        <!-- example:
+                        <Component Id="UniqueComponentId" Guid="UniqueGUID">
+                            <File Id="uniqueFileId" KeyPath="yes" Source="SourceDir\filename.ext" />
+                        </Component>
+                        /example -->
+                        <!--  -->
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+
+        <Feature Id="MainPluginFeature" Title="${FBSTRING_ProductName}" Level="1">
+            <ComponentRef Id="InstallDirComp"/>
+            <ComponentRef Id="CompanyDirComp"/>
+            <ComponentGroupRef Id="PluginDLLGroup"/>
+        </Feature>
+    </Product>
+</Wix>

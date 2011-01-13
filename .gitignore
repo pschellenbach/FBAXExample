@@ -1,0 +1,12 @@
+*.user
+*.suo
+*.ncb
+*~
+*.swp
+*.orig
+*.aps
+*.vbw
+*.exp
+*.lib
+*.pdb
+*.oca
